@@ -1,29 +1,28 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import "./styles.css";
-import Home from "./component/Home";
-import Students from "./component/Student";
-import Contact from "./component/Contact";
-import Navbar from "./component/Navbar";
-import Detail from "./component/Detail";
-import StudentEdit from "./component/StudentEdit";
-import NewStudents from "./component/NewStudent";
+import {BrowserRouter,Routes,Route} from 'react-router-dom'
+import Navbar from "./components/Navbar";
+import Home from './components/Home';
+import Students from './components/Students'
+import './index.css'
+import Contact from "./components/Contact";
+import { StudentContextProvider } from './components/StudentContext'
 
 function App() {
   return (
-    <Detail>
-      <div className="main-container">
-        <BrowserRouter>
-          <Navbar />
-          <Routes>
-            <Route path="/Home" element={<Home />} />
-            <Route path="/Students" element={<Students />} />
-            <Route path="/Contact" element={<Contact />} />
-            <Route path="/StudentEdit/:id" element={<StudentEdit />} />
-            <Route path="/NewStudents" element={<NewStudents />} />
-          </Routes>
-        </BrowserRouter>
-      </div>
-    </Detail>
+    <div className="main">
+       <StudentContextProvider>
+      <BrowserRouter>
+      <Navbar/>
+        <Routes>
+          <Route path="/" element={<Home/>}></Route>
+          <Route path="/students" element={<Students/>}></Route>
+          <Route path="/contact-us" element={<Contact/>}></Route>
+        </Routes>
+      </BrowserRouter>
+      </StudentContextProvider>
+      {/* <Navbar/>
+      <Home/>
+      <Contact/> */}
+    </div>
   );
 }
 
